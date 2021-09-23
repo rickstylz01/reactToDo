@@ -9,6 +9,17 @@ function Todo({ todo }) {
   );
 }
 
+function TodoForm({ addTodo }) {
+  const [value, setValue] = React.useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addTodo(value);
+    setVaue("");
+  };
+}
+
 function App() {
   const [todos, setTodos] = React.useState([
     { text: "Learn about React" },
