@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 
-function Todo({ todo, index, completeTodo }) {
+function Todo({ todo, index, completeTodo, removeTodo }) {
   return (
     <div
       className="todo"
@@ -10,6 +10,7 @@ function Todo({ todo, index, completeTodo }) {
       {todo.text}
       <div>
         <button onClick={() => completeTodo(index)}>Complete</button>
+        <button onClick={() => removeTodo(index)}>x</button>
       </div>
     </div>
   );
@@ -55,6 +56,13 @@ function App() {
     },
   ]);
 
+  // Deletes an item when you click on an x
+  const removeTodo = index => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
+  }
+
   // Takes the list of todos, by index, and sets their isCompleted state to true
   const completeTodo = index => {
     const newTodos = [...todos];
@@ -77,6 +85,7 @@ function App() {
               index={index}
               todo={todo}
               completeTodo={completeTodo}
+              removeTodo={removeTodo}
             />
           ))}
           <TodoForm addTodo={addTodo} />
