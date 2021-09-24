@@ -33,10 +33,22 @@ function TodoForm({ addTodo }) {
 
 function App() {
   const [todos, setTodos] = React.useState([
-    { text: "Learn about React" },
-    { text: "Meet friend for lunch" },
-    { text: "Build really cool todo app" },
+    { text: "Learn about React",
+      isCompleted: false
+    },
+    { text: "Meet friend for lunch",
+      isCompleted: false
+    },
+    { text: "Build really cool todo app",
+      isCompleted: false
+    },
   ]);
+
+  const completeTodo = index => {
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true;
+  }
+
 
   const addTodo = text => {
     const newTodos = [...todos, {text}];
